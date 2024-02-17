@@ -47,7 +47,10 @@ def index(request):
     month_list = list(months_dict.keys())
     html_months = ""
     for month in month_list:
-        html_months += f"<li>{month}</li>"
+        reverse_url = reverse("months_path", args=[month])
+        html_months += f"<li><a href='{reverse_url}'>{month}</a></li>"
+    
+    response_txt = f"<ul>{html_months}</ul>"
 
-    return HttpResponse(html_months)
+    return HttpResponse(response_txt)
 
